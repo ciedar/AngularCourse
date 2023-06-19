@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'project';
+  section: string = '';
+
+
+  onNavigationChanged(section: string) {
+    this.section = section;
+  }
+
 }
