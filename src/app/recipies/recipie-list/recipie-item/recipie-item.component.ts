@@ -7,11 +7,15 @@ import { Recipie } from '../../recipies.model';
 })
 export class RecipieItemComponent {
   @Input() recipie: Recipie;
-  @Output() selectedRecipie = new EventEmitter<void>();
+  @Output() recipieEvent = new EventEmitter<void>();
 
 
-  selectedRecipieSendEvent() {
-    this.selectedRecipie.emit();
+  recipieEventSend() {
+    this.recipieEvent.emit();
   }
+
+
+
+
 
 }
