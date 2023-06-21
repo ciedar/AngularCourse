@@ -1,10 +1,22 @@
-import { Component } from '@angular/core';
-
+import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Ingredient } from 'src/app/shared/ingredient.model';
 @Component({
   selector: 'app-shopping-edit',
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent {
+  @ViewChild('name', { static: false }) nameRef: ElementRef;
+  @ViewChild('amount', { static: false }) amountRef: ElementRef;
+  @Output() addIngredientEvent = new EventEmitter<Ingredient>();
+
+
+  addIngredientEventSend() {
+    const ingredientName: string = this.nameRef.nativeElement.value;
+    const ingredientAmount: number = this.amountRef.nativeElement.value;
+    const newItem = new Ingredient(ingredientName, ingredientAmount);
+    this.addIngredientEvent.emit(newItem);
+  }
+
 
 }

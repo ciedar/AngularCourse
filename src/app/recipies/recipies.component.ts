@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Recipie } from './recipies.model';
+
 
 @Component({
   selector: 'app-recipies',
@@ -7,7 +8,8 @@ import { Recipie } from './recipies.model';
   styleUrls: ['./recipies.component.css']
 })
 export class RecipiesComponent {
-  selectedRecipie: Recipie;
+  @Input() recipie: Recipie;
+  recipieSelected: Recipie;
 
 
 }

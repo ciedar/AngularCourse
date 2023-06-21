@@ -9,11 +9,9 @@ export class RecipieItemComponent {
   @Input() recipie: Recipie;
   @Output() recipieEvent = new EventEmitter<void>();
 
-
   recipieEventSend() {
     this.recipieEvent.emit();
   }
-
 
 
 
