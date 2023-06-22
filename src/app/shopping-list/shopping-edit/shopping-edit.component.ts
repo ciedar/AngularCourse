@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Input, Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 @Component({
   selector: 'app-shopping-edit',
@@ -8,15 +8,18 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
 export class ShoppingEditComponent {
   @ViewChild('name', { static: false }) nameRef: ElementRef;
   @ViewChild('amount', { static: false }) amountRef: ElementRef;
-  @Output() addIngredientEvent = new EventEmitter<Ingredient>();
+  @Output() sendIngredientEvent = new EventEmitter<Ingredient>();
+  @Input() nameInput: string;
+
+  sendIngredient() {
+    const newName: string = this.nameRef.nativeElement.value;
+    const newAmount: number = this.amountRef.nativeElement.value;
+    const newItem: Ingredient = new Ingredient(newName, newAmount);
 
 
-  addIngredientEventSend() {
-    const ingredientName: string = this.nameRef.nativeElement.value;
-    const ingredientAmount: number = this.amountRef.nativeElement.value;
-    const newItem = new Ingredient(ingredientName, ingredientAmount);
-    this.addIngredientEvent.emit(newItem);
+    this.sendIngredientEvent.emit(newItem);
   }
+
 
 
 }

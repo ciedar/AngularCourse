@@ -11,10 +11,10 @@ export class ShoppingListComponent {
     new Ingredient("Apples", 10),
     new Ingredient("Tomato", 8)
   ];
-
-
-  newIngredientAdded(ingredient: Ingredient) {
+  name: string = "darek";
+  addNewItem(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
   }
+
 
 }
