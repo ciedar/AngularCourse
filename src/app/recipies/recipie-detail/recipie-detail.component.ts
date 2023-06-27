@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Recipie } from '../recipies.model';
-
+import { RecipieService } from '../recipies.service';
 
 
 @Component({
@@ -10,4 +10,9 @@ import { Recipie } from '../recipies.model';
 })
 export class RecipieDetailComponent {
   @Input() recipie: Recipie;
+
+
+  constructor(private recipieService: RecipieService) {
+
+  }
 }
