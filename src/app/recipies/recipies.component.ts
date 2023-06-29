@@ -10,7 +10,7 @@ import { RecipieService } from './recipies.service';
   providers: [RecipieService]
 })
 export class RecipiesComponent implements OnInit {
-  @Input() recipie: Recipie;
+  // @Input() recipie: Recipie;
   recipieSelected: Recipie;
 
   constructor(private recipieService: RecipieService) {
