@@ -27,3 +27,12 @@
         <img [src]="recipie.imagePath" alt="{{recipie.name}}" class="img-responsive" style="max-height: 200px">
     </div>
 </div>
+<div class="row">
+    <div class="col-xs-12">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let ingredient of recipie.ingredient">
+                {{ingredient.name}} - {{ingredient.amount}}
+            </li>
+        </ul>
+    </div>
+</div>
