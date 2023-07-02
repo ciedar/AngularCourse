@@ -28,9 +28,11 @@ export class RecipieService {
         return this.recipies.slice();
     }
 
-    sendToShoppingList(ingredient: Ingredient[]) {
-        this.shoppingList.addNewIngredient(ingredient);
+    pushIngredientToShoppingList(ingredient: Ingredient[]) {
+        this.shoppingList.addNewIngredients(ingredient);
     }
+
+
 
 
 

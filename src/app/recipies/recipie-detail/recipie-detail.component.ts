@@ -19,7 +19,7 @@ export class RecipieDetailComponent {
 
   }
 
-  sendNewIngredients() {
-    this.recipieService.sendToShoppingList(this.recipie.ingredient);
+  addNewItems() {
+    this.recipieService.pushIngredientToShoppingList(this.recipie.ingredient);
   }
 }

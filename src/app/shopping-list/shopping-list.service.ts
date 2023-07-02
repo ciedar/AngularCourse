@@ -16,12 +16,10 @@ export class ShoppingListService {
         this.sendNewItems.emit(this.ingredients);
     }
 
-    addNewIngredient(ingredient: Ingredient[]) {
+    addNewIngredients(ingredient: Ingredient[]) {
         this.ingredients.push(...ingredient);
-        this.sendNewItems.emit(this.ingredients)
+        this.sendNewItems.emit(this.ingredients);
     }
-
-
 
     getItems() {
         return this.ingredients.slice();
