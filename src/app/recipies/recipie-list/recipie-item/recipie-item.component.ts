@@ -10,15 +10,12 @@ import { Router } from '@angular/router';
 export class RecipieItemComponent {
   // @Input
   @Input() recipie: Recipie;
-
-  constructor(private recipieService: RecipieService, private router: Router) {
+  @Input() index: number;
+  constructor() {
 
   }
 
-  // handleClick(id: number) {
-  //   console.log(this.recipie)
-  //   this.router.navigate(['/recipies', id]);
-  // }
+
 
 
 

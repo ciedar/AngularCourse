@@ -6,7 +6,6 @@
 <hr>
 <div class="row">
     <div class="col-xs-12">
-        <app-recipie-item (click)="handleClick(i)" *ngFor="let a of recipies; let i = index"
-            [recipie]="a"></app-recipie-item>
+        <app-recipie-item *ngFor="let a of recipies; let i = index" [recipie]="a" [index]="i"></app-recipie-item>
     </div>
 </div>

@@ -25,14 +25,9 @@ export class RecipieDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    // const id = Number(this.activeRoute.snapshot.params['id']);
-    // this.recipie = this.recipieService.getRecipieById(id);
     this.activeRoute.params.subscribe((params: Params) => {
       this.recipie = this.recipieService.getRecipieById(Number(params['id']))
     })
   }
 
-  // getRecipieById(id: number) {
-  //   this.recipie = this.recipieService.getRecipieById(id);
-  // }
 }

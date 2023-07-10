@@ -19,9 +19,7 @@ export class RecipieListComponent implements OnInit {
     this.recipies = this.recipieService.getRecipie();
   }
 
-  handleClick(id: number) {
-    this.router.navigate(['recipies', id]);
-  }
+
 
 
 
