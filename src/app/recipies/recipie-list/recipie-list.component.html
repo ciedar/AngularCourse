@@ -1,4 +1,4 @@
-<div class="row">\
+<div class="row">
     <div class="col-xs-12">
         <button class="btn btn-success">New Recipie</button>
     </div>
@@ -6,6 +6,7 @@
 <hr>
 <div class="row">
     <div class="col-xs-12">
-        <app-recipie-item *ngFor="let a of recipies" [recipie]="a"></app-recipie-item>
+        <app-recipie-item (click)="handleClick(i)" *ngFor="let a of recipies; let i = index"
+            [recipie]="a"></app-recipie-item>
     </div>
 </div>

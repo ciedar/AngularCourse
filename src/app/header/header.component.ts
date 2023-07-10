@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,9 +6,5 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  @Output() event = new EventEmitter<string>();
 
-  navigationChanged(event: string) {
-    this.event.emit(event);
-  }
 }

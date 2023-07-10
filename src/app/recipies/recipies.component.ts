@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Recipie } from './recipies.model';
 import { RecipieService } from './recipies.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,20 +10,22 @@ import { RecipieService } from './recipies.service';
   styleUrls: ['./recipies.component.css'],
   providers: [RecipieService]
 })
-export class RecipiesComponent implements OnInit {
+export class RecipiesComponent {
   // @Input() recipie: Recipie;
   recipieSelected: Recipie;
 
-  constructor(private recipieService: RecipieService) {
+  constructor(private recipieService: RecipieService, private router: Router) {
 
   }
 
 
-  ngOnInit() {
-    this.recipieService.selectedRecipie.subscribe((recipie: Recipie) => {
-      this.recipieSelected = recipie;
-    })
-  }
+  // ngOnInit() {
+  //   this.recipieService.selectedRecipie.subscribe((recipie: Recipie) => {
+  //     this.recipieSelected = recipie;
+  //   })
+  // }
+
+
 
 
 }

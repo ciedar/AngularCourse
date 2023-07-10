@@ -1,3 +1,8 @@
 <app-header (event)="onNavigationChanged($event)" (event)="onNavigationChanged($event)"></app-header>
-<app-recipies *ngIf="section === 'recipie'"></app-recipies>
-<app-shopping-list *ngIf="section === 'shopping'"></app-shopping-list>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

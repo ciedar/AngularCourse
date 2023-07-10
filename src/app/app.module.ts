@@ -11,6 +11,9 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { DropdownDirectiveDirective } from './shared/dropdown-directive.directive';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
+import { RouterModule } from '@angular/router'
+import { AppRouteModule } from './app-route.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +25,15 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
     RecipieItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    DropdownDirectiveDirective
+    DropdownDirectiveDirective,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRouteModule
   ],
-  providers: [ShoppingListService],
+  providers: [ShoppingListService, AppRouteModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
