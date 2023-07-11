@@ -1,7 +1,19 @@
 <div *ngIf="recipie; else map" class="container">
-    <p>{{recipie.name}}</p>
-    <p>{{recipie.description}}</p>
-
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>{{recipie.name}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            {{recipie.description}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <img [src]="recipie.imagePath" alt="{{recipie.name}}" class="img-responsive" style="max-height: 200px">
+        </div>
+    </div>
 </div>
 <ng-template #map>
     <p>Recipie-Edit works!</p>

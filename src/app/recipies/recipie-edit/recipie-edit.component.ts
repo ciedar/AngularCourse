@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipieService } from '../recipies.service';
 import { Recipie } from '../recipies.model';
@@ -22,5 +22,7 @@ export class RecipieEditComponent implements OnInit {
     // const link = this.activeRoute.snapshot.params['new'];
     // console.log(link)
   }
+
+
 
 }
