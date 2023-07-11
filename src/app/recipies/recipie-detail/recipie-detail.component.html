@@ -6,7 +6,8 @@
             </button>
             <ul class="dropdown-menu">
                 <li><a (click)="addNewItems()" style="cursor: pointer;">Add to shopping list</a></li>
-                <li><a style="cursor: pointer;">Eddit Recipie</a></li>
+                <li><a style="cursor: pointer;" [routerLink]="['edit']" [queryParams]="{allowEdit: edit === true}">Eddit
+                        Recipie</a></li>
                 <li><a style="cursor: pointer;">Delete Recipie</a></li>
             </ul>
         </div>

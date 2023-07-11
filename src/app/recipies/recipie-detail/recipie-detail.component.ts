@@ -13,8 +13,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class RecipieDetailComponent implements OnInit {
   recipie: Recipie;
-
-
+  id: number;
+  edit: boolean = false;
 
   constructor(private recipieService: RecipieService, private shoppingList: ShoppingListService, private activeRoute: ActivatedRoute) {
 
@@ -27,6 +27,9 @@ export class RecipieDetailComponent implements OnInit {
   ngOnInit() {
     this.activeRoute.params.subscribe((params: Params) => {
       this.recipie = this.recipieService.getRecipieById(Number(params['id']))
+      this.id = Number(params['id'])
+      this.edit = params['id'] != null;
+
     })
   }
 

@@ -20,7 +20,9 @@ export class RecipieListComponent implements OnInit {
   }
 
 
-
+  // handleClick() {
+  //   this.router.navigate([])
+  // }
 
 
 

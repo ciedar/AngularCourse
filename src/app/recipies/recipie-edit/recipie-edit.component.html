@@ -1,0 +1,8 @@
+<div *ngIf="recipie; else map" class="container">
+    <p>{{recipie.name}}</p>
+    <p>{{recipie.description}}</p>
+
+</div>
+<ng-template #map>
+    <p>Recipie-Edit works!</p>
+</ng-template>
