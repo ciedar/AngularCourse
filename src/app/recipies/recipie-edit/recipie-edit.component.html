@@ -1,20 +1,25 @@
-<div *ngIf="recipie; else map" class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <h1>{{recipie.name}}</h1>
+<form [formGroup]="editForm" (ngSubmit)="editFormSubmit()">
+    <div *ngIf="recipie; else map" class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <label>Recipie name</label>
+                <input type="text" formControlName="recipieName">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label>Recipie description</label>
+                <input type="text" formControlName="recipieDescription">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <img [src]="recipie.imagePath" alt="{{recipie.name}}" class="img-responsive" style="max-height: 200px">
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12">
-            {{recipie.description}}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <img [src]="recipie.imagePath" alt="{{recipie.name}}" class="img-responsive" style="max-height: 200px">
-        </div>
-    </div>
-</div>
-<ng-template #map>
-    <p>Recipie-Edit works!</p>
-</ng-template>
+    <button type="submit">Submit</button>
+    <ng-template #map>
+        <p>Recipie-Edit works!</p>
+    </ng-template>
+</form>

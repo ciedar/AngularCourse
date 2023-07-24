@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from './shopping-list.service';
 import { Ingredient } from '../shared/ingredient.model';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-list',
@@ -10,6 +11,7 @@ import { Ingredient } from '../shared/ingredient.model';
 })
 export class ShoppingListComponent implements OnInit {
   ingredientList: Ingredient[];
+
 
   constructor(private shoppingList: ShoppingListService) {
 
@@ -21,6 +23,12 @@ export class ShoppingListComponent implements OnInit {
       this.ingredientList = item;
     })
   }
+
+  sendEditEvent(index: number) {
+    this.shoppingList.editEvent.next(index);
+  }
+
+
 
 
 }
