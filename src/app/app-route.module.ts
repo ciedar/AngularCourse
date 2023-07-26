@@ -8,6 +8,7 @@ import { RecipieItemComponent } from "./recipies/recipie-list/recipie-item/recip
 import { RecipieDetailComponent } from "./recipies/recipie-detail/recipie-detail.component";
 import { HomeComponent } from "./home/home.component";
 import { RecipieEditComponent } from "./recipies/recipie-edit/recipie-edit.component";
+import { NewRecipieComponent } from "./new-recipie/new-recipie.component";
 
 
 const appRoutes: Routes = [
@@ -16,7 +17,7 @@ const appRoutes: Routes = [
         path: 'recipies', component: RecipiesComponent, children:
             [
                 { path: '', component: HomeComponent },
-                { path: 'new', component: RecipieEditComponent },
+                { path: 'new', component: NewRecipieComponent },
                 { path: ':id', component: RecipieDetailComponent },
                 { path: ':id/edit', component: RecipieEditComponent }
 

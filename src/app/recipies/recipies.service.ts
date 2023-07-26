@@ -5,7 +5,7 @@ import { ShoppingListService } from "../shopping-list/shopping-list.service";
 
 @Injectable()
 export class RecipieService {
-    public selectedRecipie = new EventEmitter<Recipie>();
+    public selectedRecipie = new EventEmitter<Recipie[]>();
 
 
     recipies: Recipie[] = [
@@ -35,6 +35,12 @@ export class RecipieService {
 
     getRecipieById(id: number) {
         return this.recipies[id];
+    }
+
+    addNewRecipie(data: Recipie) {
+        this.recipies.push(data);
+        this.selectedRecipie.emit(this.recipies)
+        console.log(this.recipies)
     }
 
 

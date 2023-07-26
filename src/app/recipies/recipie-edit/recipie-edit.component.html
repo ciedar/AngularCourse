@@ -14,12 +14,13 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <img [src]="recipie.imagePath" alt="{{recipie.name}}" class="img-responsive" style="max-height: 200px">
+                <img [src]="editForm.get('recipieImagePath').value" alt="{{editForm.get('recipieName').value}}"
+                    class="img-responsive" style="max-height: 200px">
             </div>
         </div>
+        <button type="submit">Submit</button>
     </div>
-    <button type="submit">Submit</button>
     <ng-template #map>
-        <p>Recipie-Edit works!</p>
+        <p>Select Recipie</p>
     </ng-template>
 </form>

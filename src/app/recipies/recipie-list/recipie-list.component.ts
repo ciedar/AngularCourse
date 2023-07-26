@@ -17,6 +17,10 @@ export class RecipieListComponent implements OnInit {
 
   ngOnInit() {
     this.recipies = this.recipieService.getRecipie();
+
+    this.recipieService.selectedRecipie.subscribe((data: Recipie[]) => {
+      this.recipies = data;
+    })
   }
 
 

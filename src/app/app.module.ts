@@ -15,6 +15,8 @@ import { RouterModule } from '@angular/router'
 import { AppRouteModule } from './app-route.module';
 import { HomeComponent } from './home/home.component';
 import { RecipieEditComponent } from './recipies/recipie-edit/recipie-edit.component';
+import { NewRecipieComponent } from './new-recipie/new-recipie.component';
+import { RecipieService } from './recipies/recipies.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { RecipieEditComponent } from './recipies/recipie-edit/recipie-edit.compo
     ShoppingEditComponent,
     DropdownDirectiveDirective,
     HomeComponent,
-    RecipieEditComponent
+    RecipieEditComponent,
+    NewRecipieComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import { RecipieEditComponent } from './recipies/recipie-edit/recipie-edit.compo
     AppRouteModule,
     ReactiveFormsModule
   ],
-  providers: [ShoppingListService, AppRouteModule],
+  providers: [ShoppingListService, AppRouteModule, RecipieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

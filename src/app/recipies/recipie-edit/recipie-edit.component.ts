@@ -12,8 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class RecipieEditComponent implements OnInit {
   recipie: Recipie;
   editForm: FormGroup
-  // edit: boolean = false;
-  // id: number;
+
   constructor(private recipieServie: RecipieService, private activeRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -23,7 +22,8 @@ export class RecipieEditComponent implements OnInit {
 
     this.editForm = new FormGroup({
       'recipieName': new FormControl(this.recipie.name, Validators.required),
-      'recipieDescription': new FormControl(this.recipie.description, Validators.required)
+      'recipieDescription': new FormControl(this.recipie.description, Validators.required),
+      'recipieImagePath': new FormControl(this.recipie.imagePath, Validators.required)
     })
 
   }

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   selector: 'app-recipies',
   templateUrl: './recipies.component.html',
   styleUrls: ['./recipies.component.css'],
-  providers: [RecipieService]
+  // providers: [RecipieService]
 })
 export class RecipiesComponent {
   // @Input() recipie: Recipie;
