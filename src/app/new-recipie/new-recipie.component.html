@@ -1,3 +1,49 @@
+<!-- <div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="newRecipieForm" (ngSubmit)="addNewRecipie(newRecipieForm)">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="recipieName">Recipie Name:</label>
+                        <input type="text" class="form-control" formControlName="recipieName">
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="recipieDescription">Recipie Description:</label>
+                        <input type="text" class="form-control" formControlName="recipieDescription">
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="recipieImagePath">Image Path:</label>
+                        <input type="text" class="form-control" formControlName="recipieImagePath">
+                    </div>
+                </div>
+            </div>
+            <div class="row" formArrayName="recipieIngredient">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <input class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="form-group">
+                        <input class="form-control" type="number">
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="form-group">
+                        <button class="btn btn-success" type="button">Add Ingredient +</button>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success">Add Recipie</button>
+        </form>
+    </div>
+</div> -->
+
 <div class="row">
     <div class="col-xs-12">
         <form [formGroup]="newRecipieForm" (ngSubmit)="addNewRecipie(newRecipieForm)">
@@ -21,15 +67,31 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="row"> -->
-            <!-- <div class="col-xs-12"> -->
-            <!-- <div class="form-group"> -->
-            <!-- <button class="btn btn-success" type="button">Add Ingredient</button> -->
-            <!-- <input class="form-control-xs"> -->
-            <!-- </div> -->
-            <!-- </div> -->
-            <!-- </div> -->
-            <button type="submit" class="btn btn-success" [disabled]="!newRecipieForm.valid">Add Recipie</button>
+            <div class="row" formArrayName="ing">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <input class="form-control" formControlName="recipieName">
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="form-group">
+                        <input class="form-control" type="number" formControlName="recipieAmount">
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="form-group">
+                        <button class="btn btn-success" type="button" (click)="onAddIngredient()">Add Ingredient
+                            +</button>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success">Add Recipie</button>
         </form>
     </div>
 </div>
+
+
+
+<!-- watching udemy tutorial steps 
+leaving my solution -->
