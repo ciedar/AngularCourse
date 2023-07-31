@@ -13,6 +13,7 @@ import { RecipieService } from '../recipies/recipies.service';
 export class NewRecipieComponent implements OnInit {
   newRecipieForm: FormGroup
   newRecipie: Recipie
+  newIngredient: Ingredient;
 
 
   constructor(private recipieService: RecipieService) { }
@@ -33,28 +34,33 @@ export class NewRecipieComponent implements OnInit {
     const name = data.value.recipieName
     const desc = data.value.recipieDescription
     const path = data.value.imagePath
-    const lel = data.value.recipieIngredient
-    console.log(data, lel)
-    // const ing = new Ingredient(data.value.recipieIngredient.recipieName, data.value.recipieIngredient.recipieAmount)
-    // console.log(ing)
-    // console.log(data.value)
+    const formArray = this.newRecipieForm.get('ing');
 
-    // this.newRecipie = new Recipie(name, desc, path, ing)
-    // this.recipieService.addNewRecipie(this.newRecipie);
+    const ingredientData = (<FormArray>formArray).controls.map((data: FormGroup) => {
+      const name = data.value.ingredientName;
+      const amount = data.value.ingredientAmount;
+      const newIngredient = new Ingredient(name, amount);
+      return newIngredient;
+    })
+
+    this.newRecipie = new Recipie(name, desc, path, ingredientData)
+    this.recipieService.addNewRecipie(this.newRecipie);
 
   }
 
 
-  onAddHobby() {
-    // const newArrayItem = new FormControl(null, Validators.required);
-    // (<FormArray>this.newRecipieForm.get('recipieIngredient')).push(newArrayItem)
-    // console.log(newArrayItem)
-  }
+
 
   getIngredients() {
-    // return (<FormArray>this.newRecipieForm.get('recipieIngredient').controls).
+    return (<FormArray>this.newRecipieForm.get('ing')).controls
   }
   onAddIngredient() {
+    const arrayItem = new FormGroup({
+      'ingredientName': new FormControl(null, Validators.required),
+      'ingredientAmount': new FormControl(null, Validators.required)
+    });
+
+    (<FormArray>this.newRecipieForm.get('ing')).push(arrayItem);
 
   }
 }

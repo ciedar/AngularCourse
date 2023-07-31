@@ -68,14 +68,16 @@
                 </div>
             </div>
             <div class="row" formArrayName="ing">
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        <input class="form-control" formControlName="recipieName">
+                <div *ngFor="let ele of getIngredients(); let i = index" [formGroupName]="i">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <input class="form-control" formControlName="ingredientName">
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-2">
-                    <div class="form-group">
-                        <input class="form-control" type="number" formControlName="recipieAmount">
+                    <div class="col-xs-2">
+                        <div class="form-group">
+                            <input class="form-control" type="number" formControlName="ingredientAmount">
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -85,6 +87,7 @@
                     </div>
                 </div>
             </div>
+
 
             <button type="submit" class="btn btn-success">Add Recipie</button>
         </form>
