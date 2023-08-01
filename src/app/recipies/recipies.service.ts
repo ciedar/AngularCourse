@@ -2,6 +2,7 @@ import { EventEmitter, Injectable } from "@angular/core"
 import { Recipie } from "./recipies.model";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
+import { FormGroup } from "@angular/forms";
 
 @Injectable()
 export class RecipieService {
@@ -39,6 +40,16 @@ export class RecipieService {
 
     addNewRecipie(data: Recipie) {
         this.recipies.push(data);
+        this.selectedRecipie.emit(this.recipies)
+    }
+
+    updateRecipie(recipieId: number, data: Recipie) {
+        this.recipies[recipieId] = new Recipie(
+            data.name,
+            data.description,
+            data.imagePath,
+            data.ingredient)
+
         this.selectedRecipie.emit(this.recipies)
     }
 

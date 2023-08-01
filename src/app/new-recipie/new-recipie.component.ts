@@ -45,7 +45,6 @@ export class NewRecipieComponent implements OnInit {
 
     this.newRecipie = new Recipie(name, desc, path, ingredientData)
     this.recipieService.addNewRecipie(this.newRecipie);
-    console.log(this.newRecipieForm)
 
   }
 
