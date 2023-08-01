@@ -1,24 +1,36 @@
 <form [formGroup]="editForm" (ngSubmit)="editFormSubmit()">
-    <div *ngIf="recipie; else map" class="container">
+    <div *ngIf="recipie; else map">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-6">
                 <label>Recipie name</label>
-                <input type="text" formControlName="recipieName">
+                <input type="text" formControlName="recipieName" class="form-control">
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-6">
                 <label>Recipie description</label>
-                <input type="text" formControlName="recipieDescription">
+                <textarea type="text" formControlName="recipieDescription" class="form-control"> </textarea>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12">
-                <img [src]="editForm.get('recipieImagePath').value" alt="{{editForm.get('recipieName').value}}"
-                    class="img-responsive" style="max-height: 200px">
+            <div class="col-xs-6">
+                <label for="text">Image path</label>
+                <input type="text" class="form-control" formControlName="recipieImagePath">
             </div>
         </div>
-        <button type="submit">Submit</button>
+        <label for="">Ingredients:</label>
+        <div class="row" formArrayName="ing">
+            <div class="col-xs-12 row" *ngFor="let ing of getRecipieIngredient(); let i = index" [formGroupName]="i">
+                <div class="col-xs-6">
+                    <input type="text" class="form-control" formControlName="name">
+                </div>
+                <div class="col-xs-2">
+                    <input type="text" class="form-control" formControlName="amount">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="button" class="btn btn-danger" (click)="editFormClear()">Clear</button>
     </div>
     <ng-template #map>
         <p>Select Recipie</p>

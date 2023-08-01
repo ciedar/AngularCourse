@@ -40,7 +40,6 @@ export class RecipieService {
     addNewRecipie(data: Recipie) {
         this.recipies.push(data);
         this.selectedRecipie.emit(this.recipies)
-        console.log(this.recipies)
     }
 
 

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipieService } from '../recipies.service';
 import { Recipie } from '../recipies.model';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Form, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-recipie-edit',
@@ -23,13 +23,31 @@ export class RecipieEditComponent implements OnInit {
     this.editForm = new FormGroup({
       'recipieName': new FormControl(this.recipie.name, Validators.required),
       'recipieDescription': new FormControl(this.recipie.description, Validators.required),
-      'recipieImagePath': new FormControl(this.recipie.imagePath, Validators.required)
+      'recipieImagePath': new FormControl(this.recipie.imagePath, Validators.required),
+      'ing': new FormArray([])
     })
+
+    if (this.recipie.ingredient) {
+      for (let ing of this.recipie.ingredient) {
+        (<FormArray>this.editForm.get('ing')).push(new FormGroup({
+          'name': new FormControl(ing.name),
+          'amount': new FormControl(ing.amount)
+        }))
+      }
+    }
 
   }
 
-  editFormSubmit() {
+  getRecipieIngredient() {
+    return (<FormArray>this.editForm.get('ing')).controls;
+  }
 
+  editFormSubmit() {
+    console.log(this.editForm)
+  }
+
+  editFormClear() {
+    this.editForm.reset();
   }
 
 
