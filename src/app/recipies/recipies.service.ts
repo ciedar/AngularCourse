@@ -53,6 +53,11 @@ export class RecipieService {
         this.selectedRecipie.emit(this.recipies)
     }
 
+    deleteRecipie(id: number) {
+        this.recipies.splice(id, 1);
+        this.selectedRecipie.emit(this.recipies)
+    }
+
 
 
 

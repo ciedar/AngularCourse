@@ -33,7 +33,7 @@ export class NewRecipieComponent implements OnInit {
   addNewRecipie(data: FormGroup) {
     const name = data.value.recipieName
     const desc = data.value.recipieDescription
-    const path = data.value.imagePath
+    const path = data.value.recipieImagePath
     const formArray = this.newRecipieForm.get('ing');
 
     const ingredientData = (<FormArray>formArray).controls.map((data: FormGroup) => {
@@ -63,4 +63,5 @@ export class NewRecipieComponent implements OnInit {
     (<FormArray>this.newRecipieForm.get('ing')).push(arrayItem);
 
   }
+
 }

@@ -51,7 +51,7 @@ export class RecipieEditComponent implements OnInit {
     const desc = this.editForm.value.recipieDescription
     const path = this.editForm.value.recipieImagePath
     const formArray = this.editForm.get('ing');
-
+    // const ingredientData = this.editForm.value['ing'];
     const ingredientData = (<FormArray>formArray).controls.map((data: FormGroup) => {
       const name = data.value.name;
       const amount = data.value.amount;
@@ -60,7 +60,7 @@ export class RecipieEditComponent implements OnInit {
     })
     const newRecipie = new Recipie(name, desc, path, ingredientData)
     this.recipieServie.updateRecipie(this.id, newRecipie);
-
+    this.router.navigate(['recipies', this.id])
   }
 
   editFormClear() {
@@ -74,5 +74,10 @@ export class RecipieEditComponent implements OnInit {
     }))
   }
 
-
+  onDelete(index: number) {
+    (<FormArray>this.editForm.get('ing')).removeAt(index);
+  }
+  onBack() {
+    this.router.navigate(['recipies', this.id]);
+  }
 }

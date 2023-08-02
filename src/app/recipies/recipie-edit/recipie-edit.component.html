@@ -1,6 +1,7 @@
 <form [formGroup]="editForm" (ngSubmit)="editFormSubmit()">
     <button [disabled]="!editForm.valid" type="submit" class="btn btn-success">Submit</button>
     <button type="button" class="btn btn-danger" (click)="editFormClear()">Clear</button>
+    <button type="button" class="btn btn-danger" (click)="onBack()">Back</button>
     <div *ngIf="recipie; else map">
         <div class="row">
             <div class="col-xs-6">
@@ -31,12 +32,12 @@
                     <input type="text" class="form-control" formControlName="amount">
                 </div>
                 <div class="xol-xs-2">
-                    <button class="btn btn-danger"> X </button>
+                    <button class="btn btn-danger" (click)="onDelete(i)"> X </button>
                 </div>
             </div>
             <div class="row col-xs-12">
                 <div class="col-xs-12">
-                    <button class="btn btn-success" (click)="onAddIngredient()">Add Ingredient</button>
+                    <button class="btn btn-success" type="button" (click)="onAddIngredient()">Add Ingredient</button>
                 </div>
             </div>
         </div>
