@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
+
+
+
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { RecipiesComponent } from './recipies/recipies.component';
@@ -17,6 +22,7 @@ import { HomeComponent } from './home/home.component';
 import { RecipieEditComponent } from './recipies/recipie-edit/recipie-edit.component';
 import { NewRecipieComponent } from './new-recipie/new-recipie.component';
 import { RecipieService } from './recipies/recipies.service';
+import { HttpManagmentService } from './recipies/http-managment.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +45,7 @@ import { RecipieService } from './recipies/recipies.service';
     AppRouteModule,
     ReactiveFormsModule
   ],
-  providers: [ShoppingListService, AppRouteModule, RecipieService],
+  providers: [ShoppingListService, AppRouteModule, RecipieService, HttpManagmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
