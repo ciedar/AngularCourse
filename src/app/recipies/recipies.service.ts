@@ -3,6 +3,7 @@ import { Recipie } from "./recipies.model";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { FormGroup } from "@angular/forms";
+import { HttpManagmentService } from "./http-managment.service";
 
 @Injectable()
 export class RecipieService {
@@ -57,7 +58,6 @@ export class RecipieService {
         this.recipies.splice(id, 1);
         this.selectedRecipie.emit(this.recipies)
     }
-
 
 
 

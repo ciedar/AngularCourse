@@ -43,7 +43,8 @@ import { HttpManagmentService } from './recipies/http-managment.service';
     BrowserModule,
     FormsModule,
     AppRouteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [ShoppingListService, AppRouteModule, RecipieService, HttpManagmentService],
   bootstrap: [AppComponent]
