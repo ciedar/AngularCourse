@@ -15,8 +15,6 @@ export class HeaderComponent {
   }
 
   fetchData() {
-    this.httpService.onFetchData().subscribe((data) => {
-
-    });
+    this.httpService.onFetchData()
   }
 }

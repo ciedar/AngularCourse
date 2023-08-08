@@ -60,6 +60,11 @@ export class RecipieService {
     }
 
 
+    setRecipies(data: Recipie[]) {
+        this.recipies = data;
+        this.selectedRecipie.emit(this.recipies.slice())
+    }
+
 
 
 }

@@ -14,18 +14,15 @@ export class HttpManagmentService {
 
   onSaveData() {
     this.recipieArrayCopy = this.recipieService.getRecipie();
-    this.http.post(this.url, this.recipieArrayCopy).subscribe((data) => {
+    this.http.put(this.url, this.recipieArrayCopy).subscribe((data) => {
       console.log(data)
     });
   }
 
   onFetchData() {
-    return this.http.get<{ [key: string]: Recipie }>(this.url).pipe(map(responseData => {
-      for (let key in responseData) {
-        console.log(responseData[key]);
-      }
-
-    }))
+    this.http.get<Recipie[]>(this.url).subscribe((data) => {
+      this.recipieService.setRecipies(data);
+    })
   }
 
 
