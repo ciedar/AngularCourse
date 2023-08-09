@@ -20,10 +20,16 @@ export class HttpManagmentService {
   }
 
   onFetchData() {
-    this.http.get<Recipie[]>(this.url).subscribe((data) => {
-      this.recipieService.setRecipies(data);
-    })
+    return this.http.get<Recipie[]>(this.url).pipe(
+      map(recipes => {
+        return recipes.map(recipie => {
+          return { ...recipie, ingredient: recipie.ingredient ? recipie.ingredient : [] };
+        });
+      }),
+      tap(data => {
+        this.recipieService.setRecipies(data);
+      })
+    );
   }
-
 
 }

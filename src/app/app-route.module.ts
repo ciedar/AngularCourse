@@ -9,12 +9,13 @@ import { RecipieDetailComponent } from "./recipies/recipie-detail/recipie-detail
 import { HomeComponent } from "./home/home.component";
 import { RecipieEditComponent } from "./recipies/recipie-edit/recipie-edit.component";
 import { NewRecipieComponent } from "./new-recipie/new-recipie.component";
+import { RecipiesresolverService } from "./recipies/recipiesresolver.service";
 
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/recipies', pathMatch: 'full' },
     {
-        path: 'recipies', component: RecipiesComponent, children:
+        path: 'recipies', component: RecipiesComponent, resolve: [RecipiesresolverService], children:
             [
                 { path: '', component: HomeComponent },
                 { path: 'new', component: NewRecipieComponent },

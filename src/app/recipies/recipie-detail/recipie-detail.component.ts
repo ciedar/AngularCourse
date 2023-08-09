@@ -15,7 +15,7 @@ export class RecipieDetailComponent implements OnInit {
   recipie: Recipie;
   id: number;
   edit: boolean = false;
-
+  recipiesArray: Recipie[] = [];
   constructor(private recipieService: RecipieService, private shoppingList: ShoppingListService, private activeRoute: ActivatedRoute, private router: Router) {
 
   }
@@ -25,11 +25,17 @@ export class RecipieDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.recipiesArray = this.recipieService.getRecipie();
+    console.log(this.recipiesArray)
+
     this.activeRoute.params.subscribe((params: Params) => {
       this.recipie = this.recipieService.getRecipieById(Number(params['id']))
       this.id = Number(params['id'])
       this.edit = params['id'] != null;
 
+      if (this.id >= this.recipiesArray.length) {
+        this.router.navigate(['']);
+      }
     })
   }
   deleteRecipie(id: number) {
