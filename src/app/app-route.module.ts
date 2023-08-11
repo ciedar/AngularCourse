@@ -10,10 +10,11 @@ import { HomeComponent } from "./home/home.component";
 import { RecipieEditComponent } from "./recipies/recipie-edit/recipie-edit.component";
 import { NewRecipieComponent } from "./new-recipie/new-recipie.component";
 import { RecipiesresolverService } from "./recipies/recipiesresolver.service";
+import { AuthComponent } from "./auth/auth.component";
 
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: '/recipies', pathMatch: 'full' },
+    { path: '', redirectTo: '/auth', pathMatch: 'full' },
     {
         path: 'recipies', component: RecipiesComponent, resolve: [RecipiesresolverService], children:
             [
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
 
             ]
     },
-    { path: 'shopping-list', component: ShoppingListComponent }
+    { path: 'shopping-list', component: ShoppingListComponent },
+    { path: 'auth', component: AuthComponent }
 ];
 
 

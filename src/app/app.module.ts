@@ -23,6 +23,8 @@ import { RecipieEditComponent } from './recipies/recipie-edit/recipie-edit.compo
 import { NewRecipieComponent } from './new-recipie/new-recipie.component';
 import { RecipieService } from './recipies/recipies.service';
 import { HttpManagmentService } from './recipies/http-managment.service';
+import { AuthComponent } from './auth/auth.component';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { HttpManagmentService } from './recipies/http-managment.service';
     DropdownDirectiveDirective,
     HomeComponent,
     RecipieEditComponent,
-    NewRecipieComponent
+    NewRecipieComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,7 @@ import { HttpManagmentService } from './recipies/http-managment.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ShoppingListService, AppRouteModule, RecipieService, HttpManagmentService],
-  bootstrap: [AppComponent]
+  providers: [ShoppingListService, AppRouteModule, RecipieService, HttpManagmentService,],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
