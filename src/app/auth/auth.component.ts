@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpManagmentService } from '../recipies/http-managment.service';
 import { User } from '../user.mode';
-import { AuthserviceService } from './authservice.service';
+import { AuthResponseData, AuthserviceService } from './authservice.service';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -13,7 +13,8 @@ export class AuthComponent implements OnInit {
   inLoginMode: boolean = false;
   inputForm: FormGroup;
   email: string = ''
-  userData: User;
+  isLoading: boolean = false;
+  error: string = null;
 
   constructor(private authService: AuthserviceService) {
 
@@ -33,10 +34,33 @@ export class AuthComponent implements OnInit {
   }
 
   submitForm(data: FormGroup) {
-    this.userData = new User(this.inputForm.get('email').value, this.inputForm.get('password').value)
+    // this.error = null;
+    this.isLoading = true;
+    if (!this.inputForm.valid) {
+      return;
+    }
 
-    this.authService.onRegister(this.userData).subscribe();
-    this.inputForm.reset()
+    const email = data.value.email
+    const password = data.value.password
+
+    if (this.inLoginMode === true) {
+      return null
+    }
+
+    if (this.inLoginMode === false) {
+
+      this.authService.onRegister(email, password)
+        .subscribe(responseData => {
+          console.log(responseData);
+          this.isLoading = false;
+        }, error => {
+          console.log(error)
+          this.isLoading = false;
+          this.error = error.error.error.message
+        });
+
+    }
+
   }
 
 }

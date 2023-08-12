@@ -1,10 +1,12 @@
 export class User {
-    public userName: string;
+    public email: string;
     public passowrd: string;
+    public returnSecureToken: boolean
 
-    constructor(userName: string, passowrd: string) {
-        this.userName = userName;
+    constructor(userName: string, passowrd: string, secureToken: boolean) {
+        this.email = userName;
         this.passowrd = passowrd;
+        this.returnSecureToken = true;
 
     }
 }

@@ -15,10 +15,6 @@ export class RecipiesresolverService implements Resolve<Recipie[]> {
 
     recipies = this.recipieService.getRecipie();
 
-    if (recipies.length = 0) {
-      return recipies;
-    }
-
     if (recipies.length === 0) {
       return this.httpService.onFetchData();
     }
