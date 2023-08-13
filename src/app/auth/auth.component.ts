@@ -4,6 +4,7 @@ import { AbstractControl, Form, FormControl, FormGroup, Validators } from '@angu
 import { HttpManagmentService } from '../recipies/http-managment.service';
 import { User } from '../user.mode';
 import { AuthResponseData, AuthserviceService } from './authservice.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -15,6 +16,7 @@ export class AuthComponent implements OnInit {
   email: string = ''
   isLoading: boolean = false;
   error: string = null;
+  confirmMessage: string = null
 
   constructor(private authService: AuthserviceService) {
 
@@ -34,32 +36,41 @@ export class AuthComponent implements OnInit {
   }
 
   submitForm(data: FormGroup) {
-    // this.error = null;
-    this.isLoading = true;
-    if (!this.inputForm.valid) {
-      return;
-    }
-
+    let authObs: Observable<AuthResponseData>
     const email = data.value.email
     const password = data.value.password
+    this.isLoading = true;
 
     if (this.inLoginMode === true) {
-      return null
+      authObs = this.authService.onLogin(email, password)
+    }
+    if (!this.inLoginMode) {
+      authObs = this.authService.onRegister(email, password)
     }
 
-    if (this.inLoginMode === false) {
+    authObs.subscribe(() => {
+      this.isLoading = false
+    }, error => {
+      this.isLoading = false
+      this.error = error
+      this.confirmMessage = null
+    }, () => {
+      if (this.inLoginMode) {
+        this.isLoading = false;
+        this.confirmMessage = `Logged in`
+        this.error = null
+      } else {
+        this.isLoading = false;
+        this.confirmMessage = `Registered successfully`
+        this.error = null
+      }
+    });
 
-      this.authService.onRegister(email, password)
-        .subscribe(responseData => {
-          console.log(responseData);
-          this.isLoading = false;
-        }, error => {
-          console.log(error)
-          this.isLoading = false;
-          this.error = error.error.error.message
-        });
 
-    }
+
+
+
+
 
   }
 

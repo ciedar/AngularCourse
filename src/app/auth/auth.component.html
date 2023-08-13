@@ -1,7 +1,8 @@
 <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
-        <div class="div alert alert-danger" *ngIf="error">
-            {{error}}
+        <div class="div alert alert-success" *ngIf="error || confirmMessage" [ngClass]="{'alert-danger': error,
+        'alert-success': confirmMessage}">
+            {{error ? error : confirmMessage}}
         </div>
         <div class="div" *ngIf="isLoading">
             <app-loadingspinner></app-loadingspinner>
