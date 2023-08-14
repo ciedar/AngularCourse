@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 export class AuthComponent implements OnInit {
   inLoginMode: boolean = false;
   inputForm: FormGroup;
-  email: string = ''
+  // email: string = ''
   isLoading: boolean = false;
   error: string = null;
   confirmMessage: string = null
@@ -35,12 +35,14 @@ export class AuthComponent implements OnInit {
   switchToRegister() {
     this.inLoginMode = !this.inLoginMode;
   }
+  private turnOffSpinner() {
+    this.isLoading = false;
+    this.error = null
+  }
 
   submitForm(data: FormGroup) {
     this.authService.user.subscribe((data: User) => {
-      console.log(data);
       this.user = data;
-      console.log(this.user)
     })
     let authObs: Observable<AuthResponseData>
     const email = data.value.email
@@ -57,28 +59,17 @@ export class AuthComponent implements OnInit {
     authObs.subscribe(() => {
       this.isLoading = false
     }, error => {
-      this.isLoading = false
       this.error = error
-      this.confirmMessage = null
+      this.turnOffSpinner()
     }, () => {
       if (this.inLoginMode) {
-
-        this.isLoading = false;
         this.confirmMessage = `Logged in`
-        this.error = null
+        this.turnOffSpinner()
       } else {
-        this.isLoading = false;
         this.confirmMessage = `Registered successfully`
-        this.error = null
+        this.turnOffSpinner()
       }
     });
-
-
-
-
-
-
-
   }
 
 }

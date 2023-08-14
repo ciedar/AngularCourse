@@ -9,7 +9,7 @@ export interface AuthResponseData {
   password: string
   idToken: string,
   refreshToken: string,
-  exoresIn: string,
+  expiresIn: string,
   localId: string
   registered?: boolean
 }
@@ -33,12 +33,9 @@ export class AuthserviceService {
     }).pipe(
       catchError(error => {
         this.error = error.error.error.message
-        console.log(this.error)
         return throwError(this.error);
       }), tap((responseData) => {
-        const expDate = new Date(new Date().getTime() + +responseData.exoresIn * 1000)
-        const user = new User(responseData.email, responseData.localId, responseData.idToken, expDate)
-        this.user.next(user);
+        this.sendUser(responseData.email, responseData.localId, responseData.idToken, responseData.expiresIn)
       })
     )
 
@@ -51,14 +48,17 @@ export class AuthserviceService {
       returnSecureToken: true
     }).pipe(
       catchError(error => {
-        console.log(error)
         this.error = error.error.error.message
         return throwError(error);
       }), tap((responseData) => {
-        const expDate = new Date(new Date().getTime() + +responseData.exoresIn * 1000)
-        const user = new User(responseData.email, responseData.localId, responseData.idToken, expDate)
-        this.user.next(user);
+        this.sendUser(responseData.email, responseData.localId, responseData.idToken, responseData.expiresIn)
       })
     )
+  }
+
+  private sendUser(email: string, localId: string, idToken: string, expiresIn: string) {
+    const expDate = new Date(new Date().getTime() + +expiresIn * 1000)
+    const user = new User(email, localId, idToken, expDate)
+    this.user.next(user);
   }
 }
