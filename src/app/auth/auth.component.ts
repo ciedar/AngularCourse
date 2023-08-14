@@ -17,6 +17,7 @@ export class AuthComponent implements OnInit {
   isLoading: boolean = false;
   error: string = null;
   confirmMessage: string = null
+  user: User
 
   constructor(private authService: AuthserviceService) {
 
@@ -36,6 +37,11 @@ export class AuthComponent implements OnInit {
   }
 
   submitForm(data: FormGroup) {
+    this.authService.user.subscribe((data: User) => {
+      console.log(data);
+      this.user = data;
+      console.log(this.user)
+    })
     let authObs: Observable<AuthResponseData>
     const email = data.value.email
     const password = data.value.password
@@ -56,6 +62,7 @@ export class AuthComponent implements OnInit {
       this.confirmMessage = null
     }, () => {
       if (this.inLoginMode) {
+
         this.isLoading = false;
         this.confirmMessage = `Logged in`
         this.error = null

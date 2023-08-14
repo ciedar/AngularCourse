@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { pipe, catchError, throwError } from 'rxjs';
+import { pipe, catchError, throwError, tap, Subject } from 'rxjs';
+import { User } from '../user.mode';
 
 
 export interface AuthResponseData {
-  idToken: string,
   email: string,
+  password: string
+  idToken: string,
   refreshToken: string,
   exoresIn: string,
   localId: string
@@ -16,6 +18,7 @@ export interface AuthResponseData {
   providedIn: 'root'
 })
 export class AuthserviceService {
+  public user = new Subject<User>;
   public error: string;
   apiKey: string = `AIzaSyByUviVUYR4pnxqul6xlmpUpXYDETMM7fk`
   registerFirebaseLink: string = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.apiKey}`
@@ -32,6 +35,10 @@ export class AuthserviceService {
         this.error = error.error.error.message
         console.log(this.error)
         return throwError(this.error);
+      }), tap((responseData) => {
+        const expDate = new Date(new Date().getTime() + +responseData.exoresIn * 1000)
+        const user = new User(responseData.email, responseData.localId, responseData.idToken, expDate)
+        this.user.next(user);
       })
     )
 
@@ -47,6 +54,10 @@ export class AuthserviceService {
         console.log(error)
         this.error = error.error.error.message
         return throwError(error);
+      }), tap((responseData) => {
+        const expDate = new Date(new Date().getTime() + +responseData.exoresIn * 1000)
+        const user = new User(responseData.email, responseData.localId, responseData.idToken, expDate)
+        this.user.next(user);
       })
     )
   }

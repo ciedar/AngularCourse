@@ -1,12 +1,21 @@
 export class User {
     public email: string;
-    public passowrd: string;
-    public returnSecureToken: boolean
+    public id: string;
+    private _token: string;
+    private _tokenExpirationDate: Date
 
-    constructor(userName: string, passowrd: string, secureToken: boolean) {
-        this.email = userName;
-        this.passowrd = passowrd;
-        this.returnSecureToken = true;
+    constructor(email: string, id: string, token: string, _tokenExpiration: Date) {
+        this.email = email;
+        this.id = id;
+        this._token = token;
+        this._tokenExpirationDate = _tokenExpiration;
 
+    }
+
+    get token() {
+        if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
+            return
+        }
+        return this._token
     }
 }
