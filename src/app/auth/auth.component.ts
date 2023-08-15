@@ -5,6 +5,7 @@ import { HttpManagmentService } from '../recipies/http-managment.service';
 import { User } from '../user.mode';
 import { AuthResponseData, AuthserviceService } from './authservice.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -19,7 +20,7 @@ export class AuthComponent implements OnInit {
   confirmMessage: string = null
   user: User
 
-  constructor(private authService: AuthserviceService) {
+  constructor(private authService: AuthserviceService, private router: Router) {
 
   }
   ngOnInit(): void {
@@ -58,6 +59,7 @@ export class AuthComponent implements OnInit {
 
     authObs.subscribe(() => {
       this.isLoading = false
+      this.router.navigate(['/recipies']);
     }, error => {
       this.error = error
       this.turnOffSpinner()
