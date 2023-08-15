@@ -18,7 +18,7 @@ const appRoutes: Routes = [
     {
         path: 'recipies', component: RecipiesComponent, resolve: [RecipiesresolverService], children:
             [
-                { path: '', component: HomeComponent },
+                // { path: '', component: HomeComponent },
                 { path: 'new', component: NewRecipieComponent },
                 { path: ':id', component: RecipieDetailComponent },
                 { path: ':id/edit', component: RecipieEditComponent }

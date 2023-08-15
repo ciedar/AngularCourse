@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { pipe, catchError, throwError, tap, Subject, BehaviorSubject } from 'rxjs';
 import { User } from '../user.mode';
+import { Router } from '@angular/router';
 
 
 export interface AuthResponseData {
@@ -23,7 +24,7 @@ export class AuthserviceService {
   apiKey: string = `AIzaSyByUviVUYR4pnxqul6xlmpUpXYDETMM7fk`
   registerFirebaseLink: string = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.apiKey}`
   loginFirebaseLink: string = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.apiKey}`
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   onRegister(email: string, password: string) {
     return this.http.post<AuthResponseData>(this.registerFirebaseLink, {
@@ -60,5 +61,10 @@ export class AuthserviceService {
     const expDate = new Date(new Date().getTime() + +expiresIn * 1000)
     const user = new User(email, localId, idToken, expDate)
     this.user.next(user);
+  }
+
+  logout() {
+    this.user.next(null)
+    this.router.navigate(['auth'])
   }
 }
