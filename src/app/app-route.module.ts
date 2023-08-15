@@ -11,12 +11,16 @@ import { RecipieEditComponent } from "./recipies/recipie-edit/recipie-edit.compo
 import { NewRecipieComponent } from "./new-recipie/new-recipie.component";
 import { RecipiesresolverService } from "./recipies/recipiesresolver.service";
 import { AuthComponent } from "./auth/auth.component";
+import { AuthGuard } from "./auth/auth-guard.guard";
 
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/auth', pathMatch: 'full' },
     {
-        path: 'recipies', component: RecipiesComponent, resolve: [RecipiesresolverService], children:
+        path: 'recipies', component: RecipiesComponent,
+        resolve: [RecipiesresolverService],
+        canActivate: [AuthGuard],
+        children:
             [
                 // { path: '', component: HomeComponent },
                 { path: 'new', component: NewRecipieComponent },
