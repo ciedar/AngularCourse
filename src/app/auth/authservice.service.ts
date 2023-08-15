@@ -26,6 +26,28 @@ export class AuthserviceService {
   loginFirebaseLink: string = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.apiKey}`
   constructor(private http: HttpClient, private router: Router) { }
 
+
+
+  autoLogin() {
+    const userData: {
+      email: string,
+      id: string,
+      _token: string,
+      _tokenExpirationDate: string
+    } = JSON.parse(localStorage.getItem('userData'))
+
+    if (!userData) {
+      return;
+    }
+
+    const newUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate))
+
+    if (newUser.token) {
+      this.user.next(newUser);
+    }
+  }
+
+
   onRegister(email: string, password: string) {
     return this.http.post<AuthResponseData>(this.registerFirebaseLink, {
       email: email,
@@ -61,6 +83,7 @@ export class AuthserviceService {
     const expDate = new Date(new Date().getTime() + +expiresIn * 1000)
     const user = new User(email, localId, idToken, expDate)
     this.user.next(user);
+    localStorage.setItem('userData', JSON.stringify(user));
   }
 
   logout() {
