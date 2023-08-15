@@ -27,11 +27,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   saveData() {
-    this.httpService.onSaveData();
+    this.httpService.onSaveData().subscribe(data => {
+      console.log(data);
+    })
   }
 
   fetchData() {
-    this.httpService.onFetchData()
+    this.httpService.onFetchData().subscribe(data => {
+      console.log(data);
+    })
   }
 
   logout() {

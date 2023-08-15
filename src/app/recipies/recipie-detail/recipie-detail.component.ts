@@ -40,6 +40,6 @@ export class RecipieDetailComponent implements OnInit {
   }
   deleteRecipie(id: number) {
     this.recipieService.deleteRecipie(id);
-    this.router.navigate([''])
+    this.router.navigate(['/recipies'])
   }
 }

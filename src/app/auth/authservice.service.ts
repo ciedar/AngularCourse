@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { pipe, catchError, throwError, tap, Subject } from 'rxjs';
+import { pipe, catchError, throwError, tap, Subject, BehaviorSubject } from 'rxjs';
 import { User } from '../user.mode';
 
 
@@ -18,7 +18,7 @@ export interface AuthResponseData {
   providedIn: 'root'
 })
 export class AuthserviceService {
-  public user = new Subject<User>;
+  public user = new BehaviorSubject<User>(null);
   public error: string;
   apiKey: string = `AIzaSyByUviVUYR4pnxqul6xlmpUpXYDETMM7fk`
   registerFirebaseLink: string = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.apiKey}`
