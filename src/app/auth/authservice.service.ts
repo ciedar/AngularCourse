@@ -19,6 +19,7 @@ export interface AuthResponseData {
   providedIn: 'root'
 })
 export class AuthserviceService {
+  expTokenTime: any;
   public user = new BehaviorSubject<User>(null);
   public error: string;
   apiKey: string = `AIzaSyByUviVUYR4pnxqul6xlmpUpXYDETMM7fk`
@@ -44,7 +45,16 @@ export class AuthserviceService {
 
     if (newUser.token) {
       this.user.next(newUser);
+      const time = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
+      this.autoLogout(time)
     }
+  }
+
+  autoLogout(expirationTime: number) {
+    console.log(new Date(expirationTime).getHours())
+    this.expTokenTime = setTimeout(() => {
+      this.logout();
+    }, expirationTime)
   }
 
 
@@ -83,11 +93,17 @@ export class AuthserviceService {
     const expDate = new Date(new Date().getTime() + +expiresIn * 1000)
     const user = new User(email, localId, idToken, expDate)
     this.user.next(user);
+    this.autoLogout(+expiresIn * 1000)
     localStorage.setItem('userData', JSON.stringify(user));
   }
 
   logout() {
     this.user.next(null)
     this.router.navigate(['auth'])
+    localStorage.removeItem('userData');
+    if (this.expTokenTime) {
+      clearTimeout(this.expTokenTime);
+    }
+    this.expTokenTime = null;
   }
 }
