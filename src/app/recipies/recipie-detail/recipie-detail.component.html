@@ -31,8 +31,9 @@
 <div class="row">
     <div class="col-xs-12">
         <ul class="list-group">
-            <li class="list-group-item" *ngFor="let ingredient of recipie.ingredient; let i = index">
+            <li class="list-group-item custom" *ngFor="let ingredient of recipie.ingredient; let i = index">
                 {{ingredient.name}} - {{ingredient.amount}}
+                <button class="btn btn-success" (click)="addSingleIngredient(ingredient)">Add</button>
             </li>
         </ul>
     </div>

@@ -42,4 +42,8 @@ export class RecipieDetailComponent implements OnInit {
     this.recipieService.deleteRecipie(id);
     this.router.navigate(['/recipies'])
   }
+
+  addSingleIngredient(ingredient: Ingredient) {
+    this.shoppingList.addNewItem(ingredient);
+  }
 }
